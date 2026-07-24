@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlanWise – Your Personal Financial Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="try.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-area">
+        <i class="fas fa-file-invoice logo-icon"></i>
+        <h1 class="logo">PlanWise <span>Your Complete Financial Picture</span></h1>
+      </div>
+      <div class="header-actions">
+        <select id="client-select" class="input-field" style="min-width:200px;">
+          <option value="">📂 Load saved plan…</option>
+        </select>
+        <button id="new-btn" class="btn-primary"><i class="fas fa-plus"></i> New Plan</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+      <button class="tab" data-tab="finances"><i class="fas fa-wallet"></i> Finances</button>
+      <button class="tab" data-tab="risk"><i class="fas fa-shield-haltered"></i> Risk</button>
+      <button class="tab" data-tab="goals"><i class="fas fa-bullseye"></i> Goals</button>
+      <button class="tab" data-tab="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</button>
+    </div>
+
+    <!-- Profile Tab -->
+    <div id="profile-panel" class="tab-panel active">
+      <div class="card">
+        <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="client-name" class="input-field" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" id="client-age" class="input-field" placeholder="e.g. 35">
+          </div>
+          <div class="form-group">
+            <label>Occupation</label>
+            <input type="text" id="client-occupation" class="input-field" placeholder="e.g. IT Professional">
+          </div>
+          <div class="form-group">
+            <label>Number of Dependents</label>
+            <input type="number" id="client-dependents" class="input-field" placeholder="0">
+          </div>
+        </div>
+        <button id="save-profile-btn" class="btn-primary"><i class="fas fa-save"></i> Save Profile</button>
+        <p class="note">All data is stored securely in your private Google Sheet.</p>
+      </div>
+    </div>
+
+    <!-- Finances Tab -->
+    <div id="finances-panel" class="tab-panel">
+      <div class="card">
+        <h3><i class="fas fa-coins"></i> Financial Details</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Annual Income (₹)</label>
+            <input type="number" id="annual-income" class="input-field" placeholder="e.g. 1800000">
+          </div>
+          <div class="form-group">
+            <label>Monthly Expenses (₹)</label>
+            <input type="number" id="monthly-expenses" class="input-field" placeholder="e.g. 75000">
+          </div>
+          <div class="form-group">
+            <label>Emergency Fund (₹)</label>
+            <input type="number" id="emergency-fund" class="input-field" placeholder="e.g. 150000">
+          </div>
+          <div class="form-group">
+            <label>Existing Investments (₹)</label>
+            <input type="number" id="investments" class="input-field" placeholder="e.g. 500000">
+          </div>
+          <div class="form-group">
+            <label>Life Insurance Cover (₹)</label>
+            <input type="number" id="life-insurance" class="input-field" placeholder="e.g. 2500000">
+          </div>
+          <div class="form-group">
+            <label>Home Loan Outstanding (₹)</label>
+            <input type="number" id="home-loan" class="input-field" placeholder="e.g. 3000000">
+          </div>
+          <div class="form-group">
+            <label>Other Liabilities (₹)</label>
+            <input type="number" id="other-liabilities" class="input-field" placeholder="0">
+          </div>
+        </div>
+        <button id="save-finances-btn" class="btn-primary"><i class="fas fa-save"></i> Save Finances</button>
+      </div>
+    </div>
+
+    <!-- Risk Tab -->
+    <div id="risk-panel" class="tab-panel">
+      <div class="card">
+        <h3><i class="fas fa-shield-alt"></i> Risk Tolerance Assessment</h3>
+        <p>Answer these questions to determine your risk profile, or enter manually below.</p>
+        <div id="quiz-container"></div>
+        <div class="risk-result" id="risk-result" style="display:none;">
+          <p><strong>Your Score:</strong> <span id="risk-score-display">0</span> / 50</p>
+          <p><strong>Category:</strong> <span id="risk-category-display">—</span></p>
+          <button id="apply-risk-btn" class="btn-primary"><i class="fas fa-check"></i> Use This Profile</button>
+          <button id="retake-quiz-btn" class="btn-outline">🔄 Retake</button>
+        </div>
+        <hr style="border-color:var(--border); margin:25px 0;">
+        <h4>Or enter manually:</h4>
+        <div class="form-grid manual-risk">
+          <div class="form-group">
+            <label>Score (10-50)</label>
+            <input type="number" id="manual-score" class="input-field" placeholder="35" min="10" max="50">
+          </div>
+          <div class="form-group">
+            <label>Risk Category</label>
+            <select id="manual-category" class="input-field">
+              <option value="">Select</option>
+              <option>Conservative</option>
+              <option>Moderately Conservative</option>
+              <option>Moderate</option>
+              <option>Moderately Aggressive</option>
+              <option>Aggressive</option>
+            </select>
+          </div>
+        </div>
+        <button id="save-risk-btn" class="btn-primary"><i class="fas fa-save"></i> Save Risk Profile</button>
+      </div>
+    </div>
+
+    <!-- Goals Tab -->
+    <div id="goals-panel" class="tab-panel">
+      <div class="card">
+        <h3><i class="fas fa-flag-checkered"></i> Your Financial Goals</h3>
+        <div id="goal-list"></div>
+        <h4>Add a Goal</h4>
+        <div class="form-grid">
+          <input type="text" id="goal-name" class="input-field" placeholder="Goal name">
+          <input type="number" id="goal-cost" class="input-field" placeholder="Current cost (₹)">
+          <input type="number" id="goal-years" class="input-field" placeholder="Years to goal">
+          <input type="number" id="goal-inflation" class="input-field" placeholder="Inflation (%)" value="6">
+          <input type="number" id="goal-return" class="input-field" placeholder="Return (%)" value="10">
+          <input type="number" id="goal-existing" class="input-field" placeholder="Existing savings (₹)" value="0">
+        </div>
+        <button id="add-goal-btn" class="btn-primary"><i class="fas fa-plus"></i> Add Goal</button>
+        <p class="note">Goals are saved automatically with the plan.</p>
+      </div>
+    </div>
+
+    <!-- Dashboard Tab -->
+    <div id="dashboard-panel" class="tab-panel">
+      <div class="dashboard-header">
+        <h2><i class="fas fa-chart-line"></i> Your Financial Dashboard</h2>
+        <div>
+          <button id="print-btn" class="btn-outline"><i class="fas fa-print"></i> Print / PDF</button>
+          <button id="save-all-btn" class="btn-primary"><i class="fas fa-save"></i> Save Entire Plan</button>
+        </div>
+      </div>
+      <div class="kpi-row" id="kpi-container"></div>
+      <div class="grid-2col">
+        <div class="card"><h3>Net Worth</h3><div id="networth-table"></div></div>
+        <div class="card"><h3>Cash Flow</h3><canvas id="cashflow-chart" height="150"></canvas></div>
+      </div>
+      <div class="card"><h3>Goal Analysis</h3><div id="goal-table"></div><canvas id="goal-chart" height="200"></canvas></div>
+      <div class="grid-2col">
+        <div class="card"><h3>Insurance Gap</h3><canvas id="insurance-chart" height="150"></canvas></div>
+        <div class="card"><h3>Illustrative Asset Allocation</h3><canvas id="allocation-chart" height="200"></canvas></div>
+      </div>
+      <div class="card"><h3>Recommendations</h3><ul id="recommendations-list"></ul></div>
+      <div class="disclaimer-card card">
+        <p><i class="fas fa-info-circle"></i> This plan is illustrative and for educational purposes only. All data is fictional or self‑provided and does not constitute financial advice.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 PlanWise. Built by Yalamanchili Joshi.</p></div>
+  </footer>
+
+  <script src="try.js"></script>
+</body>
+</html>

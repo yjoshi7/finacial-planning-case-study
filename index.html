@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlanWise – Sample Client Financial Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-area">
+        <i class="fas fa-file-invoice logo-icon"></i>
+        <h1 class="logo">PlanWise <span>Sample Financial Plan</span></h1>
+      </div>
+      <div>
+        <a href="try.html" class="btn-primary"><i class="fas fa-user-edit"></i> Try Your Own Plan</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Client Header -->
+    <section class="client-header card">
+      <h2><i class="fas fa-users"></i> Rajesh & Priya Sharma</h2>
+      <p>Ages 35 & 33 • IT Professional & Teacher • 2 Children</p>
+      <p class="explain">This is a fictional case study created for educational purposes. All data is illustrative and not personalised advice.</p>
+    </section>
+
+    <!-- Executive Summary -->
+    <section class="card">
+      <h3><i class="fas fa-star"></i> Executive Summary</h3>
+      <ul class="summary-list">
+        <li>🟢 Stable dual‑income household with monthly surplus.</li>
+        <li>🟢 Moderate risk appetite – suitable for balanced growth.</li>
+        <li>🟡 Emergency fund covers only 3 months (recommended 6).</li>
+        <li>🔴 Significant life insurance gap – HLV ₹2.5 Cr vs. ₹25 Lakhs cover.</li>
+        <li>🟡 Retirement and education goals require disciplined SIPs.</li>
+      </ul>
+      <div class="explain-box">
+        <strong>Why this matters:</strong> The executive summary gives a client (or a manager) a quick snapshot of financial health. Colour‑coded indicators (green = on track, yellow = needs attention, red = critical) are a standard way to prioritise actions.
+      </div>
+    </section>
+
+    <!-- Net Worth & Cash Flow -->
+    <div class="grid-2col">
+      <div class="card">
+        <h3><i class="fas fa-balance-scale"></i> Net Worth Statement</h3>
+        <table id="networth-table">
+          <tr><th>Assets</th><th>₹</th></tr>
+          <tr><td>Mutual Funds</td><td>5,00,000</td></tr>
+          <tr><td>Emergency Fund</td><td>1,50,000</td></tr>
+          <tr class="total-row"><td><strong>Total Assets</strong></td><td><strong>6,50,000</strong></td></tr>
+          <tr><th>Liabilities</th><th>₹</th></tr>
+          <tr><td>Home Loan</td><td>30,00,000</td></tr>
+          <tr class="total-row"><td><strong>Total Liabilities</strong></td><td><strong>30,00,000</strong></td></tr>
+          <tr class="total-row"><td><strong>Net Worth</strong></td><td><strong>-23,50,000</strong></td></tr>
+        </table>
+        <div class="explain-box">
+          <strong>Net Worth = Assets – Liabilities.</strong> A negative number is common early in a home loan because the loan (liability) is larger than the assets. Over time, as the loan is repaid and investments grow, net worth turns positive.
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-chart-line"></i> Cash Flow Summary</h3>
+        <div class="cashflow-detail">
+          <div><span>Monthly Income</span><strong>₹ 1,50,000</strong></div>
+          <div><span>Monthly Expenses</span><strong>₹ 75,000</strong></div>
+          <div class="highlight"><span>Monthly Surplus</span><strong>₹ 75,000</strong></div>
+        </div>
+        <canvas id="cashflow-chart" height="150"></canvas>
+        <div class="explain-box">
+          <strong>Cash flow = Income – Expenses.</strong> A surplus means the household is living within its means and has money available for savings and investments.
+        </div>
+      </div>
+    </div>
+
+    <!-- Risk Profile -->
+    <div class="card">
+      <h3><i class="fas fa-shield-alt"></i> Risk Profile (Assessed via RiskWise)</h3>
+      <div class="risk-detail">
+        <div><span>Score</span><strong>35 / 50</strong></div>
+        <div><span>Category</span><strong>Moderately Aggressive</strong></div>
+        <div><span>Recommended Allocation</span><strong>70% Equity, 25% Debt, 5% Gold</strong></div>
+      </div>
+      <div class="explain-box">
+        <strong>Risk profiling</strong> helps match investments to a client's comfort with volatility. A higher equity allocation is suitable for longer time horizons and stable incomes.
+      </div>
+    </div>
+
+    <!-- Goal Analysis -->
+    <div class="card">
+      <h3><i class="fas fa-bullseye"></i> Goal Analysis (Calculated with GoalWise methodology)</h3>
+      <table id="goal-table">
+        <tr><th>Goal</th><th>Future Cost</th><th>FV of Savings</th><th>Shortfall</th><th>Required SIP</th><th>Status</th></tr>
+        <tr><td>Child Education – Child 1</td><td>₹ 76,75,000</td><td>₹ 0</td><td>₹ 76,75,000</td><td>₹ 24,500/month</td><td>Shortfall</td></tr>
+        <tr><td>Child Education – Child 2</td><td>₹ 91,00,000</td><td>₹ 0</td><td>₹ 91,00,000</td><td>₹ 26,800/month</td><td>Shortfall</td></tr>
+        <tr><td>Retirement</td><td>₹ 8,74,00,000</td><td>₹ 1,08,00,000</td><td>₹ 7,66,00,000</td><td>₹ 42,000/month</td><td>Shortfall</td></tr>
+      </table>
+      <canvas id="goal-chart" height="200"></canvas>
+      <div class="explain-box">
+        <strong>Future Cost</strong> = Current Cost × (1 + inflation)^years. The required SIP is the monthly investment needed to close the gap. <em>GoalWise</em> automates these calculations.
+      </div>
+    </div>
+
+    <!-- Retirement & Insurance -->
+    <div class="grid-2col">
+      <div class="card">
+        <h3><i class="fas fa-umbrella-beach"></i> Retirement Readiness</h3>
+        <div class="stat-block">
+          <div><span>Corpus Required</span><strong>₹ 8.74 Cr</strong></div>
+          <div><span>Existing Corpus (FV)</span><strong>₹ 1.08 Cr</strong></div>
+          <div><span>Shortfall</span><strong>₹ 7.66 Cr</strong></div>
+          <div><span>Required Monthly SIP</span><strong>₹ 42,000</strong></div>
+        </div>
+        <div class="explain-box">
+          <strong>Retirement planning</strong> uses inflation to project how much money you'll need in the future, then computes the monthly savings required today.
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-heartbeat"></i> Insurance Needs (HLV Method)</h3>
+        <div class="stat-block">
+          <div><span>Human Life Value (HLV)</span><strong>₹ 2.5 Cr</strong></div>
+          <div><span>Existing Cover</span><strong>₹ 25 Lakhs</strong></div>
+          <div class="alert"><span>Coverage Gap</span><strong>₹ 2.25 Cr</strong></div>
+        </div>
+        <canvas id="insurance-chart" height="150"></canvas>
+        <div class="explain-box">
+          <strong>HLV</strong> estimates the economic loss to dependents if the income earner were to pass away prematurely. It's calculated as the present value of future income.
+        </div>
+      </div>
+    </div>
+
+    <!-- Asset Allocation -->
+    <div class="card">
+      <h3><i class="fas fa-chart-pie"></i> Illustrative Asset Allocation</h3>
+      <div class="chart-container">
+        <canvas id="allocation-chart" height="250"></canvas>
+      </div>
+      <div class="explain-box">
+        <strong>Asset allocation</strong> divides investments across asset classes (Equity, Debt, Gold, Cash) to balance risk and return. The percentages are based on the client's risk profile.
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="card">
+      <h3><i class="fas fa-clipboard-check"></i> Recommendations</h3>
+      <ol class="recommendation-list">
+        <li><strong>Increase emergency fund</strong> to at least 6 months of expenses (₹4.5 Lakhs).</li>
+        <li><strong>Enhance term insurance</strong> to ₹2.5 Crore to cover the HLV gap.</li>
+        <li><strong>Start goal‑based SIPs</strong> totalling ₹42,000/month for education and retirement.</li>
+        <li><strong>Follow the illustrative asset allocation</strong> – 70% Equity, 25% Debt, 5% Gold.</li>
+        <li><strong>Review the plan annually</strong> or after major life events.</li>
+      </ol>
+      <div class="explain-box">
+        Recommendations are prioritised: immediate (emergency, insurance) → short‑term (start SIPs) → ongoing (review). This mirrors how an advisor would present an action plan.
+      </div>
+    </div>
+
+    <!-- Assumptions & Methodology -->
+    <div class="card">
+      <details>
+        <summary><strong><i class="fas fa-cogs"></i> Assumptions & Methodology</strong></summary>
+        <ul>
+          <li>Inflation: 6% (general), 9% (education)</li>
+          <li>Expected return: 10%</li>
+          <li>Retirement age: 60, Life expectancy: 85</li>
+          <li>HLV = Annual income × (1 – (1+return)^-years) / return (simplified)</li>
+          <li>SIP formula: [Shortfall × r/12] / [(1+r/12)^(n) – 1]</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="disclaimer-card card">
+      <p><i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This case study is entirely fictional and for educational/portfolio purposes only. It does not constitute financial, investment, insurance, legal, or tax advice.</p>
+    </div>
+
+    <div class="cta-section">
+      <p>Ready to create your own personalised financial plan?</p>
+      <a href="try.html" class="btn-primary btn-large"><i class="fas fa-arrow-right"></i> Try Your Own Plan</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 PlanWise. Built by Yalamanchili Joshi.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
